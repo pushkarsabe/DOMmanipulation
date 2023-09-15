@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 // // console.dir(document);
 // console.log(document.domain);
 // console.log(document.URL);
@@ -104,3 +105,62 @@ console.log(listItem);
 // let submit = document.querySelector('input[type="submit"]');
 // submit.value = 'Send';
 >>>>>>> 894a68a (Question 5)
+=======
+//QuerySelector
+// let header = document.querySelector('#main-header');
+// console.log(header);
+// header.style.border = 'solid 4px black';
+
+// let input = document.querySelector('input');
+// input.value = 'enter items';
+
+// let submit = document.querySelector('input[type="submit"]');
+// submit.value = 'Send';
+
+// let items = document.querySelector('.list-group-item');
+// items.style.color = 'red';
+
+// let lastItem = document.querySelector('.list-group-item:last-child');
+// lastItem.style.color = 'blue';
+
+// let secondItem = document.querySelector('.list-group-item:nth-child(2)');
+// secondItem.style.color = 'coral';
+
+//Continue watching the video from 30th min uptill 37th min
+// Make the 2nd item have green background color
+// let secondItem = document.querySelector('.list-group-item:nth-child(2)');
+// secondItem.style.backgroundColor = 'green';
+// Make the 3rd item invisible
+// let thirdItem = document.querySelector('.list-group-item:nth-child(3)');
+// thirdItem.style.visibility = "hidden";
+
+
+//QuerySeelectorAll - returns node list and can use array functions
+// let titles = document.querySelectorAll('.title')
+// console.log(titles);
+
+// titles[0].textContent = 'Hello';
+// titles[1].textContent = 'There';
+
+// //to select and modify all odd childs
+// let odd = document.querySelectorAll('li:nth-child(odd)');
+// for (let i = 0; i < odd.length; i++) {
+//     odd[i].style.backgroundColor = '#f4f4f4';
+// }
+
+// //to select and modify all even childs
+// let even = document.querySelectorAll('li:nth-child(even)');
+// for (let i = 0; i < even.length; i++) {
+//     even[i].style.backgroundColor = '#f4f4f4';
+// }
+
+// Using QuerySelectorALL change the font color to green for 2nd item in the item list
+let secondItem = document.querySelectorAll('li');
+console.log(secondItem);
+secondItem[1].style.color = 'green';
+// Choose all the odd elements and make their background green using QuerySelectorALL﻿
+let odd = document.querySelectorAll('li:nth-child(odd)');
+for (let i = 0; i < odd.length; i++) {
+    odd[i].style.backgroundColor = 'green';
+}
+>>>>>>> d3465c2 (Question 6)
