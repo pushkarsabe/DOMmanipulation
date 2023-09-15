@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // // console.dir(document);
 // console.log(document.domain);
 // console.log(document.URL);
@@ -85,3 +86,21 @@ for(let i =0; i< item.length; i++){
     item[i].style.fontWeight = 'bold';
 }
 >>>>>>> 37d6dde (Question 4)
+=======
+let listItem = document.getElementsByTagName('li');
+console.log(listItem);
+// listItem[0].style.fontSize = '25px';
+
+// let list = document.getElementsByClassName('#list-group-item');
+// console.log(list);
+
+
+//QuerySeelector
+// let header = document.querySelector('#main-header');
+// console.log(header);
+// header.style.border = 'solid 4px black';
+// let input = document.querySelector('input');
+// input.value = 'enter items';
+// let submit = document.querySelector('input[type="submit"]');
+// submit.value = 'Send';
+>>>>>>> 894a68a (Question 5)
