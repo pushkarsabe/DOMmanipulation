@@ -6,7 +6,6 @@ const emailInput = document.querySelector('#email');
 const msg = document.querySelector('.msg');
 const userList = document.querySelector('#users');
 const itemList = document.getElementById('items');
-let count = 0;
 myForm.addEventListener('submit', onSubmit);
 //to remove the no of count after user refreshes the page
 // localStorage.removeItem('count');
@@ -27,7 +26,7 @@ function onSubmit(e) {
         //for adding delete button functionality 
         const delBtn = document.createElement('input');
         delBtn.setAttribute('type', 'button');
-        delBtn.setAttribute('value', 'delete');
+        delBtn.setAttribute('value', 'Delete');
         //setting id as an email of user so we can pass the value
         delBtn.id = emailInput.value;
         delBtn.setAttribute('onclick', 'deleteUser(this)');
@@ -39,6 +38,20 @@ function onSubmit(e) {
         delBtn.style.backgroundColor = '#333';
         delBtn.style.color = 'white';
         // console.log(li.textContent);
+
+        //for adding edit button functionality 
+        const editBtn = document.createElement('input');
+        editBtn.setAttribute('type', 'button');
+        editBtn.setAttribute('value', 'Edit');
+        editBtn.id = emailInput.value;
+        editBtn.setAttribute('onclick', 'editUser(this)');
+        li.appendChild(editBtn);
+        editBtn.style.margin = '10px';
+        editBtn.style.marginLeft = '10px';
+        editBtn.style.padding = '5px';
+        editBtn.style.fontSize = '15px';
+        editBtn.style.backgroundColor = '#333';
+        editBtn.style.color = 'white';
 
 
         msg.classList.add('success');
@@ -55,19 +68,41 @@ function onSubmit(e) {
         // users in the local storage
         localStorage.setItem(emailInput.value, myobjSerialized);
 
-        // if (localStorage.getItem('count') == NaN || localStorage.getItem('count') == null) {
-        //     localStorage.setItem('count', 1);
-        // }
-        // else {
-        //     addCount();
-        // }
-        // console.log('count in localStorage= ', localStorage.getItem('count'));
-
         nameInput.value = '';
         emailInput.value = '';
     }
 
 }//onSubmit
+
+function editUser(val) {
+    //remove user details from local storage and edit the user details
+
+    if (confirm('Are You Sure?')) {
+        //userName = {"name":"a","email":"aaa"}
+        //to featch name and email 
+        let userEmail = val.id;
+        let stringJSON = localStorage.getItem(val.id);
+        let array = stringJSON.split('"');
+        let userName;
+        for (let i = 0; i < array.length; i++) {
+            // console.log('array has = ' + array[i]);
+            if (array[i] == 'name') {
+                userName = array[i + 2];
+            }
+        }
+        // console.log('userName = ' + userName);
+        // console.log('userEmail = ' + userEmail);
+
+        //this will only remove the user from local and the list
+        localStorage.removeItem(val.id);
+        let parentEle = document.getElementById(val.id).parentElement;
+        userList.removeChild(parentEle);
+
+        //to edit the user details
+        nameInput.value = userName;
+        emailInput.value = userEmail;
+    }
+}
 
 function deleteUser(val) {
     //get a parent node element and delete the user details from the list
@@ -81,12 +116,6 @@ function deleteUser(val) {
     }
 }
 
-//to count the number of users inside the local storage
-// function addCount() {
-//     count = parseInt(localStorage.getItem('count')) + 1;
-//     // console.log('count in localStorage add funct = ', localStorage.getItem('count'));
-//     localStorage.setItem('count', count);
-// }
 
 
 
