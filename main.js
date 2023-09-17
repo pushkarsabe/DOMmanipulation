@@ -5,6 +5,7 @@ const nameInput = document.getElementById('name');
 const emailInput = document.querySelector('#email');
 const msg = document.querySelector('.msg');
 const userList = document.querySelector('#users');
+const itemList = document.getElementById('items');
 let count = 0;
 myForm.addEventListener('submit', onSubmit);
 //to remove the no of count after user refreshes the page
@@ -23,6 +24,23 @@ function onSubmit(e) {
         li.appendChild(document.createTextNode(`${nameInput.value}: ${emailInput.value}`));
         userList.appendChild(li);
 
+        //for adding delete button functionality 
+        const delBtn = document.createElement('input');
+        delBtn.setAttribute('type', 'button');
+        delBtn.setAttribute('value', 'delete');
+        //setting id as an email of user so we can pass the value
+        delBtn.id = emailInput.value;
+        delBtn.setAttribute('onclick', 'deleteUser(this)');
+        li.appendChild(delBtn);
+        delBtn.style.margin = '10px';
+        delBtn.style.marginLeft = '10px';
+        delBtn.style.padding = '5px';
+        delBtn.style.fontSize = '15px';
+        delBtn.style.backgroundColor = '#333';
+        delBtn.style.color = 'white';
+        // console.log(li.textContent);
+
+
         msg.classList.add('success');
         msg.innerHTML = 'Successfully loged in';
         setTimeout(() => msg.remove(), 2000);
@@ -31,7 +49,7 @@ function onSubmit(e) {
             name: nameInput.value,
             email: emailInput.value
         };
-        console.log(obj);
+        // console.log(obj);
         let myobjSerialized = JSON.stringify(obj);
         //store email of the user as a key instead of object name for adding multiple 
         // users in the local storage
@@ -50,6 +68,18 @@ function onSubmit(e) {
     }
 
 }//onSubmit
+
+function deleteUser(val) {
+    //get a parent node element and delete the user details from the list
+
+    if (confirm('Are You Sure?')) {
+        // console.log('val = ', val);
+        localStorage.removeItem(val.id);
+        let parentEle = document.getElementById(val.id).parentElement;
+        // console.log('parent element = ', parentEle);
+        userList.removeChild(parentEle);
+    }
+}
 
 //to count the number of users inside the local storage
 // function addCount() {
